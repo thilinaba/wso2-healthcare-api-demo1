@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/healthcare" name="Demo1API" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET" uri-template="/doctors/{category}">
+        <inSequence>
+            <call>
+                <endpoint key="Demo1DoctorsEP"/>
+            </call>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+    <resource methods="POST" uri-template="/categories/{category}/reserve">
+        <inSequence>
+            <property description="Get hospital name" expression="json-eval($.hospital)" name="hospitalName" scope="default" type="STRING"/>
+            <property description="Get hospital ID" expression="json-eval($.hospital_id)" name="uri.var.hospital" scope="default" type="STRING"/>
+            <property description="Get Card number" expression="json-eval($.patient.cardNo)" name="card_number" scope="default" type="STRING"/>
+            <!-- <property description="Get doctor category" expression="json-eval($.category)" name="uri.var.category" scope="default" type="STRING"/> -->
+            <log description="debug log hospital name" level="custom">
+                <property expression="get-property('hospitalName')" name="hospitalName"/>
+                <property expression="get-property('uri.var.category')" name="doctorCategory"/>
+                <property expression="get-property('card_number')" name="cardNo"/>
+            </log>
+            <switch source="get-property('hospitalName')">
+                <case regex="grand oak community hospital">
+                    <log level="custom">
+                        <property name="Forwarding to" value="grand oak"/>
+                    </log>
+                    <call>
+                        <endpoint key="Demo1GrandOakEP"/>
+                    </call>
+                </case>
+                <case regex="clemency medical center">
+                    <log level="custom">
+                        <property name="Forwarding to" value="clemency"/>
+                    </log>
+                    <call>
+                        <endpoint key="Demo1ClemencyEP"/>
+                    </call>
+                </case>
+                <case regex="pine valley community hospital">
+                    <log level="custom">
+                        <property name="Forwarding to" value="pine valley"/>
+                    </log>
+                    <call>
+                        <endpoint key="Demo1PineValleyEP"/>
+                    </call>
+                </case>
+                <default>
+                    <log level="custom">
+                        <property name="Forwarding to" value="unknown"/>
+                    </log>
+                    <payloadFactory media-type="json">
+                        <format>{'message': 'invalid hospital name'}</format>
+                        <args/>
+                    </payloadFactory>
+                </default>
+            </switch>
+            <property description="Get appointment number" expression="json-eval($.appointmentNumber)" name="uri.var.appointment_id" scope="default" type="STRING"/>
+            <log description="log apointment ID" level="custom">
+                <property expression="get-property('uri.var.appointment_id') " name="appointmentId"/>
+            </log>
+            <property description="Doctor details" expression="json-eval($.doctor)" name="doctor_details" scope="default" type="STRING"/>
+            <property description="Patient details" expression="json-eval($.patient)" name="patient_details" scope="default" type="STRING"/>
+            <call>
+                <endpoint key="Demo1ChannelingFeeEP"/>
+            </call>
+            <property description="Actual Fee" expression="json-eval($.actualFee)" name="actual_fee" scope="default" type="STRING"/>
+            <payloadFactory media-type="json">
+                <format>{"appointmentNumber":$1, "doctor":$2, "patient":$3, "fee":$4, "confirmed":"false", "card_number":"$5"}</format>
+                <args>
+                    <arg evaluator="xml" expression="$ctx:uri.var.appointment_id"/>
+                    <arg evaluator="xml" expression="$ctx:doctor_details"/>
+                    <arg evaluator="xml" expression="$ctx:patient_details"/>
+                    <arg evaluator="xml" expression="$ctx:actual_fee"/>
+                    <arg evaluator="xml" expression="$ctx:card_number"/>
+                </args>
+            </payloadFactory>
+            <call>
+                <endpoint key="Demo1SettlePaymentEP"/>
+            </call>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="Demo1DoctorsEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/Demo1DoctorsEP.xml</file>
+    </artifact>
+    <artifact name="Demo1API" groupId="com.example.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/Demo1API.xml</file>
+    </artifact>
+    <artifact name="Demo1API_swagger" groupId="com.example.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/Demo1API_swagger.yaml</file>
+    </artifact>
+    <artifact name="Demo1API_metadata" groupId="com.example.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/Demo1API_metadata.yaml</file>
+    </artifact>
+    <artifact name="Demo1GrandOakEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/Demo1GrandOakEP.xml</file>
+    </artifact>
+    <artifact name="Demo1ClemencyEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/Demo1ClemencyEP.xml</file>
+    </artifact>
+    <artifact name="Demo1PineValleyEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/Demo1PineValleyEP.xml</file>
+    </artifact>
+    <artifact name="Demo1ChannelingFeeEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/Demo1ChannelingFeeEP.xml</file>
+    </artifact>
+    <artifact name="Demo1SettlePaymentEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/Demo1SettlePaymentEP.xml</file>
+    </artifact>
+</artifacts>
