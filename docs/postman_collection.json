@@ -1,0 +1,106 @@
+{
+	"info": {
+		"_postman_id": "ec09c6e5-d62d-4bc6-b577-ff534975f4ed",
+		"name": "MI Demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Doctor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8290/healthcare/doctors/surgery",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8290",
+					"path": [
+						"healthcare",
+						"doctors",
+						"surgery"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Make appintment - without data-mapper",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"patient\": {\n  \"name\": \"John Doe\",\n  \"dob\": \"1940-03-19\",\n  \"ssn\": \"234-23-525\",\n  \"address\": \"California\",\n  \"phone\": \"8770586755\",\n  \"email\": \"johndoe@gmail.com\",\n  \"cardNo\": \"7844481124110331\"\n  },\n  \"doctor\": \"thomas collins\",\n  \"hospital_id\": \"grandoaks\",\n  \"hospital\": \"grand oak community hospital\",\n  \"appointment_date\": \"2025-04-02\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8290/healthcare/categories/surgery/reserve",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8290",
+					"path": [
+						"healthcare",
+						"categories",
+						"surgery",
+						"reserve"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Make appointment - with data-mapper",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"name\": \"John Doe\",\n  \"dob\": \"1990-03-19\",\n  \"ssn\": \"234-23-525\",\n  \"address\": \"California\",\n  \"phone\": \"8770586755\",\n  \"email\": \"johndoe@gmail.com\",\n  \"doctor\": \"thomas collins\",\n  \"hospital_id\": \"grandoaks\",\n  \"hospital\": \"grand oak community hospital\",\n  \"cardNo\": \"7844481124110331\",\n  \"appointment_date\": \"2025-04-02\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8290/healthcare/categories/surgery/reserve",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8290",
+					"path": [
+						"healthcare",
+						"categories",
+						"surgery",
+						"reserve"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
