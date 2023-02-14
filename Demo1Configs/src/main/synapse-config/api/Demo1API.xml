@@ -12,6 +12,8 @@
     </resource>
     <resource methods="POST" uri-template="/categories/{category}/reserve">
         <inSequence>
+            <!-- <datamapper config="gov:datamapper/Demo1RequestMapping.dmc" description="RequestMapping" inputSchema="gov:datamapper/Demo1RequestMapping_inputSchema.json" inputType="JSON" outputSchema="gov:datamapper/Demo1RequestMapping_outputSchema.json" outputType="JSON" xsltStyleSheet="gov:datamapper/Demo1RequestMapping_xsltStyleSheet.xml"/> -->
+            <log description="Debug payload" level="full"/>
             <property description="Get hospital name" expression="json-eval($.hospital)" name="hospitalName" scope="default" type="STRING"/>
             <property description="Get hospital ID" expression="json-eval($.hospital_id)" name="uri.var.hospital" scope="default" type="STRING"/>
             <property description="Get Card number" expression="json-eval($.patient.cardNo)" name="card_number" scope="default" type="STRING"/>

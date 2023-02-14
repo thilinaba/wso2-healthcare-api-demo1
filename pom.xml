@@ -9,6 +9,7 @@
   <name>Demo1</name>
   <description>Demo1</description>
   <modules>
+    <module>Demo1RequestMapping</module>
     <module>Demo1Configs</module>
     <module>Demo1CompositeExporter</module>
   </modules>
