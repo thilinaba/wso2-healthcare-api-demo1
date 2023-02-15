@@ -5,6 +5,7 @@
             <call>
                 <endpoint key="Demo1DoctorsEP"/>
             </call>
+            <log description="Debug log response" level="full"/>
             <respond/>
         </inSequence>
         <outSequence/>
