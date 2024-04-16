@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <endpoint name="Demo1ChannelingFeeEP" xmlns="http://ws.apache.org/ns/synapse">
-    <http method="get" uri-template="http://143.198.206.54:9090/{uri.var.hospital}/categories/appointments/{uri.var.appointment_id}/fee">
+    <http method="get" uri-template="http://hospital-service:9090/{uri.var.hospital}/categories/appointments/{uri.var.appointment_id}/fee">
         <suspendOnFailure>
             <initialDuration>-1</initialDuration>
             <progressionFactor>1.0</progressionFactor>
